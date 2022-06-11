@@ -1,0 +1,23 @@
+{
+  "name": "json-server",
+  "version": "1.0.0",
+  "description": "Simple json-server with a fake data",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node -r dotenv/config src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chporiy/json-server.git"
+  },
+  "author": "Egor Arinov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chporiy/json-server/issues"
+  },
+  "homepage": "https://github.com/Chporiy/json-server#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "json-server": "^0.17.0"
+  }
+}
