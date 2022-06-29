@@ -1,8 +1,13 @@
 const jsonServer = require("json-server");
-const { join } = require("path");
+const generate = require("./generate");
 
 const server = jsonServer.create();
-const router = jsonServer.router(join(__dirname, "db/db.json"));
+const router = jsonServer.router(
+  generate({
+    postsCount: Number(process.env.POSTS),
+    usersCount: Number(process.env.USERS),
+  })
+);
 const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
