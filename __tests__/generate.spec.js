@@ -1,5 +1,7 @@
 const generate = require("../src/generate");
 
+jest.useFakeTimers().setSystemTime(new Date("2022-01-01"));
+
 describe("generate()", () => {
   const postsCount = 10;
   const usersCount = 5;
@@ -31,6 +33,18 @@ describe("generate()", () => {
       expect(post.title.split(" ")).toHaveLength(5);
       expect(post.userId).toBeGreaterThanOrEqual(1);
       expect(post.userId).toBeLessThanOrEqual(usersCount);
+    });
+
+    it("should return a date in the recent past", () => {
+      const { date } = generate({
+        postsCount,
+        usersCount,
+      }).posts[0];
+      const timestamp = date.getTime();
+      const week = 86400000 * 7;
+
+      expect(timestamp).toBeGreaterThanOrEqual(Date.now() - week);
+      expect(timestamp).toBeLessThanOrEqual(Date.now());
     });
   });
 

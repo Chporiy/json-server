@@ -10,7 +10,7 @@ const generate = ({ postsCount, usersCount }) => {
     title: faker.lorem.words(5),
     body: faker.lorem.text(),
     preview: faker.image.image(),
-    date: faker.date.between(),
+    date: faker.date.recent(7),
   }));
   const users = [...Array(usersCount)].map((entry, i) => {
     const firstName = faker.name.firstName();
