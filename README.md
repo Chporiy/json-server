@@ -1,6 +1,6 @@
 # json-server
 
-Simple json-server with a generated fake data
+Simple json-server with a generated fake data \
 The data generator is [Faker](https://github.com/faker-js/faker)
 
 ## Environment variables
