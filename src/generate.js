@@ -4,8 +4,8 @@ const generate = ({ postsCount, usersCount }) => {
   const posts = [...Array(postsCount)].map((entry, i) => ({
     id: i,
     userId: faker.datatype.number({
-      min: 1,
-      max: usersCount,
+      min: 0,
+      max: usersCount - 1,
     }),
     title: faker.lorem.words(5),
     body: faker.lorem.text(),

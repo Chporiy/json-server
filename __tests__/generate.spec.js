@@ -31,8 +31,8 @@ describe("generate()", () => {
         date: expect.any(Date),
       });
       expect(post.title.split(" ")).toHaveLength(5);
-      expect(post.userId).toBeGreaterThanOrEqual(1);
-      expect(post.userId).toBeLessThanOrEqual(usersCount);
+      expect(post.userId).toBeGreaterThanOrEqual(0);
+      expect(post.userId).toBeLessThanOrEqual(usersCount - 1);
     });
 
     it("should return a date in the recent past", () => {
