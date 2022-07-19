@@ -33,6 +33,7 @@ describe("generate()", () => {
       expect(post.title.split(" ")).toHaveLength(5);
       expect(post.userId).toBeGreaterThanOrEqual(0);
       expect(post.userId).toBeLessThanOrEqual(usersCount - 1);
+      expect(post.preview).toContain("1920/1080");
     });
 
     it("should return a date in the recent past", () => {

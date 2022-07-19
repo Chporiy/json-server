@@ -9,7 +9,7 @@ const generate = ({ postsCount, usersCount }) => {
     }),
     title: faker.lorem.words(5),
     body: faker.lorem.text(),
-    preview: faker.image.image(),
+    preview: faker.image.image(1920, 1080),
     date: faker.date.recent(7),
   }));
   const users = [...Array(usersCount)].map((entry, i) => {
