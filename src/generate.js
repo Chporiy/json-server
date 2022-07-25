@@ -8,7 +8,7 @@ const generate = ({ postsCount, usersCount }) => {
       max: usersCount - 1,
     }),
     title: faker.lorem.words(5),
-    body: faker.lorem.text(),
+    body: faker.lorem.sentence(500),
     preview: faker.image.image(1920, 1080),
     date: faker.date.recent(7),
   }));
