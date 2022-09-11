@@ -68,8 +68,7 @@ describe("generate()", () => {
         }).users[0]
       ).toEqual({
         id: 0,
-        firstName: expect.any(String),
-        lastName: expect.any(String),
+        fullName: expect.any(String),
         avatar: expect.any(String),
         email: expect.any(String),
       });

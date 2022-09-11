@@ -22,8 +22,7 @@ The data generator is [Faker](https://github.com/faker-js/faker)
 
     User {
       id: number unique;
-      firstName: string;
-      lastName: string;
+      fullName: string;
       avatar: string;
       email: string;
     }

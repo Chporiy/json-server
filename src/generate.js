@@ -13,12 +13,11 @@ const generate = ({ postsCount, usersCount }) => {
     date: faker.date.recent(7),
   }));
   const users = [...Array(usersCount)].map((entry, i) => {
-    const firstName = faker.name.firstName();
-    const lastName = faker.name.lastName();
+    const fullName = faker.name.fullName();
+    const [firstName, lastName] = fullName.split(" ");
 
     return {
-      firstName,
-      lastName,
+      fullName,
       id: i,
       avatar: faker.image.avatar(),
       email: faker.internet.email(firstName, lastName),
