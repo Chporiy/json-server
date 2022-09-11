@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Chporiy/json-server#readme",
   "dependencies": {
-    "@faker-js/faker": "^7.3.0",
+    "@faker-js/faker": "^7.5.0",
     "dotenv": "^16.0.1",
     "json-server": "^0.17.0",
     "json-server-auth": "^2.1.0"
