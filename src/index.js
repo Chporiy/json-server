@@ -9,15 +9,10 @@ const router = jsonServer.router(
     usersCount: Number(process.env.USERS),
   })
 );
-const rules = auth.rewriter({
-  posts: 644,
-  users: 644,
-});
 
 server.db = router.db;
 
 server.use(jsonServer.defaults());
-server.use(rules);
 server.use(auth);
 server.use(router);
 server.listen(process.env.PORT, () => {
