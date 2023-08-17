@@ -1,6 +1,6 @@
 const jsonServer = require("json-server");
 const auth = require("json-server-auth");
-const generate = require("./generate");
+const generate = require("./generate/generate");
 
 const server = jsonServer.create();
 const router = jsonServer.router(
