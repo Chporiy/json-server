@@ -7,6 +7,7 @@ const router = jsonServer.router(
   generate({
     postsCount: Number(process.env.POSTS),
     usersCount: Number(process.env.USERS),
+    commentsCount: Number(process.env.COMMENTS),
   })
 );
 

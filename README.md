@@ -8,6 +8,7 @@ The data generator is [Faker](https://github.com/faker-js/faker)
     PORT=5555 - IP port for server
     POSTS=50 - number of posts
     USERS=10 - number of users
+    COMMENTS=100 - number of comments
 
 ## DB structure
 
@@ -18,6 +19,7 @@ The data generator is [Faker](https://github.com/faker-js/faker)
       body: string;
       preview: string;
       date: Date;
+      commentIds: number[];
     }
 
     User {
@@ -25,4 +27,10 @@ The data generator is [Faker](https://github.com/faker-js/faker)
       fullName: string;
       avatar: string;
       email: string;
+    }
+
+    Comment {
+      id: number uniqie;
+      postId: number;
+      userId: number;
     }

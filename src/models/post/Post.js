@@ -3,15 +3,15 @@ const { faker } = require("@faker-js/faker");
 class Post {
   /**
    * @constructor
-   * @param {number} id
-   * @param {number} maxUserId
+   * @param {Object} params
+   * @param {number} params.id
+   * @param {number} params.userId
+   * @param {number[]} params.commentIds
    */
-  constructor(id, maxUserId) {
+  constructor({ id, userId, commentIds }) {
     this.id = id;
-    this.userId = faker.datatype.number({
-      min: 0,
-      max: maxUserId,
-    });
+    this.userId = userId;
+    this.commentIds = commentIds;
     this.title = faker.lorem.words(5);
     this.body = faker.lorem.sentence(500);
     this.preview = faker.image.image(1920, 1080);

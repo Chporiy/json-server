@@ -1,7 +1,7 @@
 const { User } = require("./User");
 
 describe('User', () => {
-  it("should create instance", () => {
+  it("should create an instance", () => {
     const id = 0;
     const user = new User(id);
 
