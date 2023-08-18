@@ -1,17 +1,18 @@
 const { faker } = require("@faker-js/faker");
 
+/**
+ * @typedef {Object} Constructor
+ * @property {number} params.id
+ * @property {number} params.userId
+ */
 class Post {
   /**
    * @constructor
-   * @param {Object} params
-   * @param {number} params.id
-   * @param {number} params.userId
-   * @param {number[]} params.commentIds
+   * @param {Constructor} params
    */
-  constructor({ id, userId, commentIds }) {
+  constructor({ id, userId }) {
     this.id = id;
     this.userId = userId;
-    this.commentIds = commentIds;
     this.title = faker.lorem.words(5);
     this.body = faker.lorem.sentence(500);
     this.preview = faker.image.image(1920, 1080);

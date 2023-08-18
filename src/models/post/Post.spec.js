@@ -5,11 +5,9 @@ jest.useFakeTimers().setSystemTime(new Date("2022-01-01"));
 describe('Post', () => {
   const userId = 0;
   const id = 0;
-  const commentIds = [0, 1, 2];
   const params = {
     id,
     userId,
-    commentIds,
   };
 
   it("should create an instance", () => {

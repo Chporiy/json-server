@@ -1,11 +1,15 @@
 const { faker } = require("@faker-js/faker");
 
+/**
+ * @typedef {Object} Constructor
+ * @property {number} id
+ */
 class User {
   /**
    * @constructor
-   * @param {number} id 
+   * @param {Constructor} params 
    */
-  constructor(id) {
+  constructor({ id }) {
     const fullName = faker.name.fullName();
     const [firstName, lastName] = fullName.split(" ");
 

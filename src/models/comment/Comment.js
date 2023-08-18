@@ -1,12 +1,16 @@
 const { faker } = require("@faker-js/faker");
 
+/**
+ * @typedef {Object} Constructor
+ * @property {number} id
+ * @property {number} postId
+ * @property {number} userId
+ */
+
 class Comment {
   /**
    * @constructor
-   * @param {Object} params
-   * @param {number} params.id
-   * @param {number} params.postId
-   * @param {number} params.userId
+   * @param {Constructor} params
    */
   constructor({ id, postId, userId }) {
     this.id = id;
