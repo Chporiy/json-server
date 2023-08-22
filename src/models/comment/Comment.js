@@ -5,6 +5,7 @@ const { faker } = require("@faker-js/faker");
  * @property {number} id
  * @property {number} postId
  * @property {number} userId
+ * @property {Date} postDate
  */
 
 class Comment {
@@ -12,11 +13,12 @@ class Comment {
    * @constructor
    * @param {Constructor} params
    */
-  constructor({ id, postId, userId }) {
+  constructor({ id, postId, userId, postDate }) {
     this.id = id;
     this.postId = postId;
     this.userId = userId;
-    this.body = faker.lorem.paragraph();    
+    this.body = faker.lorem.paragraph();
+    this.date = faker.date.between(postDate, new Date());
   }
 }
 

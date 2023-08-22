@@ -1,12 +1,17 @@
+const { Post } = require("../post/Post");
+const { User } = require("../user/User");
 const { CommentGenerator } = require("./CommentGenerator");
 
 describe("CommentGenerator", () => {
-  const postsCount = 10;
-  const usersCount = 5;
+  const users = [new User({ id: 0 }), new User({ id: 1 })];
+  const posts = [
+    new Post({ id: 0, userId: users[0].id }),
+    new Post({ id: 1, userId: users[1].id }),
+  ];
   const commentsCount = 20;
   const params = {
-    postsCount,
-    usersCount,
+    users,
+    posts,
     commentsCount,
   }
 
@@ -22,6 +27,6 @@ describe("CommentGenerator", () => {
     const [ comment ] = generator.generate();
 
     expect(comment.postId).toBeGreaterThanOrEqual(0);
-    expect(comment.postId).toBeLessThanOrEqual(postsCount - 1);
+    expect(comment.postId).toBeLessThanOrEqual(posts.length - 1);
   });
 });

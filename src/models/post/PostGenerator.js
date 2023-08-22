@@ -7,21 +7,20 @@ class PostGenerator extends ContentGenerator {
    * 
    * @param {Object} params
    * @param {number} params.postsCount
-   * @param {number} params.usersCount
+   * @param {import('../user/User').User[]} params.users
    */
-  constructor({ postsCount, usersCount }) {
+  constructor({ postsCount, users }) {
     super(postsCount);
 
-    this.usersCount = usersCount;
+    this.users = users;
   }
 
   /**
    * @returns {import('./Post').Post[]}
    */
   generate() {
-    const userIds = this.getEntityIds(this.usersCount);
     const posts = this.entityIds.map((entry, id) => {
-      const userId = faker.helpers.arrayElement(userIds);
+      const { id: userId } = faker.helpers.arrayElement(this.users);
 
       return this.getPost({
         id,

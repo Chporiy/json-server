@@ -5,6 +5,7 @@ const { faker } = require("@faker-js/faker");
  * @property {number} params.id
  * @property {number} params.userId
  */
+
 class Post {
   /**
    * @constructor

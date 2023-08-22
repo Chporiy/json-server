@@ -2,12 +2,14 @@ const { PostGenerator } = require("../models/post/PostGenerator");
 const { UserGenerator } = require("../models/user/UserGenerator");
 const { CommentGenerator } = require("../models/comment/CommentGenerator");
 
-const generate = (params) => {
-  const { usersCount } = params;
-
-  const posts = new PostGenerator(params).generate();
+const generate = ({ postsCount, usersCount, commentsCount }) => {
   const users = new UserGenerator({ usersCount }).generate();
-  const comments = new CommentGenerator(params).generate();
+  const posts = new PostGenerator({ postsCount, users }).generate();
+  const comments = new CommentGenerator({
+    commentsCount,
+    posts,
+    users
+  }).generate();
 
   return {
     posts,
