@@ -8,25 +8,22 @@ class UserGenerator extends ContentGenerator {
    * @param {number} params.usersCount
    */
   constructor({ usersCount }) {
-    super(usersCount);
+    super();
+
+    this.usersCount = usersCount;
   }
 
   /**
    * @returns {import('./User').User[]}
    */
   generate() {
-    const users = this.entityIds.map((entry, id) => this.getUser({ id }));
+    const users = this.getFakeEntities(this.usersCount).map(this.getUser);
 
     return users;
   }
 
-  /**
-   * 
-   * @param {import('./User').Constructor} params 
-   * @returns {import('./User')}
-   */
-  getUser(params) {
-    return new User(params);
+  getUser() {
+    return new User();
   }
 }
 

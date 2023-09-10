@@ -1,10 +1,10 @@
 const { faker } = require("@faker-js/faker");
+const { v4: uuidv4 } = require('uuid');
 
 /**
  * @typedef {Object} Constructor
- * @property {number} id
- * @property {number} postId
- * @property {number} userId
+ * @property {string} postId
+ * @property {string} userId
  * @property {Date} postDate
  */
 
@@ -13,8 +13,8 @@ class Comment {
    * @constructor
    * @param {Constructor} params
    */
-  constructor({ id, postId, userId, postDate }) {
-    this.id = id;
+  constructor({ postId, userId, postDate }) {
+    this.id = uuidv4();
     this.postId = postId;
     this.userId = userId;
     this.body = faker.lorem.paragraph();

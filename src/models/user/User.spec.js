@@ -2,11 +2,10 @@ const { User } = require("./User");
 
 describe('User', () => {
   it("should create an instance", () => {
-    const id = 0;
-    const user = new User({ id });
+    const user = new User();
 
     expect(user).toEqual({
-      id,
+      id: expect.any(String),
       fullName: expect.any(String),
       avatar: expect.any(String),
       email: expect.any(String),

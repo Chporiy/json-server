@@ -21,12 +21,4 @@ describe("CommentGenerator", () => {
 
     expect(comments).toHaveLength(commentsCount);
   });
-
-  it('should set a random post id between "0" and "posts count - 1', () => {
-    const generator = new CommentGenerator(params);
-    const [ comment ] = generator.generate();
-
-    expect(comment.postId).toBeGreaterThanOrEqual(0);
-    expect(comment.postId).toBeLessThanOrEqual(posts.length - 1);
-  });
 });

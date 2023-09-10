@@ -6,12 +6,10 @@ jest.useFakeTimers().setSystemTime(testDate);
 
 describe('Comment', () => {
   const week = 86400000 * 7;
-  const id = 0;
   const postId = 0;
   const userId = 0;
   const postDate = new Date(testDate.getTime() - week);
   const params = {
-    id,
     postId,
     userId,
     postDate,
@@ -21,9 +19,9 @@ describe('Comment', () => {
     const comment = new Comment(params);
 
     expect(comment).toEqual({
-      id,
       postId,
       userId,
+      id: expect.any(String),
       body: expect.any(String),
       date: expect.any(Date),
     });

@@ -15,12 +15,4 @@ describe('PostGenerator', () => {
 
     expect(posts).toHaveLength(postsCount);
   });
-
-  it('should set a random user id between "0" and an "users count - 1"', () => {
-    const generator = new PostGenerator(params);
-    const [ post ] = generator.generate();
-
-    expect(post.userId).toBeGreaterThanOrEqual(0);
-    expect(post.userId).toBeLessThanOrEqual(users.length - 1);
-  });
 });

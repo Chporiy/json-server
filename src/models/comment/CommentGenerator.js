@@ -11,8 +11,9 @@ class CommentGenerator extends ContentGenerator {
    * @param {number} params.commentsCount
    */
   constructor({ posts, users, commentsCount }) {
-    super(commentsCount);
+    super();
 
+    this.commentsCount = commentsCount;
     this.posts = posts;
     this.users = users;
   }
@@ -21,12 +22,12 @@ class CommentGenerator extends ContentGenerator {
    * @returns {import('./Comment').Comment[]}
    */
   generate() {
-    const comments = this.entityIds.map((entry, id) => {
+    const comments = this.getFakeEntities(this.commentsCount).map(() => {
       const { id: postId, date: postDate } = faker.helpers.arrayElement(this.posts);
       const { id: userId } = faker.helpers.arrayElement(this.users);
 
+
       return this.getComment({
-        id,
         postId,
         userId,
         postDate,

@@ -4,9 +4,7 @@ jest.useFakeTimers().setSystemTime(new Date("2022-01-01"));
 
 describe('Post', () => {
   const userId = 0;
-  const id = 0;
   const params = {
-    id,
     userId,
   };
 
@@ -15,6 +13,7 @@ describe('Post', () => {
 
     expect(post).toEqual({
       ...params,
+      id: expect.any(String),
       title: expect.any(String),
       body: expect.any(String),
       preview: expect.any(String),

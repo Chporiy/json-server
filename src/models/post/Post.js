@@ -1,9 +1,9 @@
 const { faker } = require("@faker-js/faker");
+const { v4: uuidv4 } = require("uuid");
 
 /**
  * @typedef {Object} Constructor
- * @property {number} params.id
- * @property {number} params.userId
+ * @property {string} params.userId
  */
 
 class Post {
@@ -11,8 +11,8 @@ class Post {
    * @constructor
    * @param {Constructor} params
    */
-  constructor({ id, userId }) {
-    this.id = id;
+  constructor({ userId }) {
+    this.id = uuidv4();
     this.userId = userId;
     this.title = faker.lorem.words(5);
     this.body = faker.lorem.sentence(500);

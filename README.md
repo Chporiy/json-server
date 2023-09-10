@@ -13,24 +13,23 @@ The data generator is [Faker](https://github.com/faker-js/faker)
 ## DB structure
 
     Post {
-      id: number unique;
-      userId: number;
+      id: string unique;
+      userId: string;
       title: string;
       body: string;
       preview: string;
       date: Date;
-      commentIds: number[];
     }
 
     User {
-      id: number unique;
+      id: string unique;
       fullName: string;
       avatar: string;
       email: string;
     }
 
     Comment {
-      id: number uniqie;
-      postId: number;
-      userId: number;
+      id: string uniqie;
+      postId: string;
+      userId: string;
     }
