@@ -2,6 +2,8 @@ const { faker } = require("@faker-js/faker");
 const { ContentGenerator } = require("../../content-generator/ContentGenerator");
 const { Comment } = require("./Comment");
 
+const MAX_COMMENTS_BY_COMMENT = Number(process.env.MAX_COMMENTS_BY_COMMENT);
+
 class CommentGenerator extends ContentGenerator {
   /**
    * 
@@ -23,24 +25,63 @@ class CommentGenerator extends ContentGenerator {
    */
   generate() {
     const comments = this.getFakeEntities(this.commentsCount).map(() => {
-      const { id: postId, date: postDate } = faker.helpers.arrayElement(this.posts);
-      const { id: userId } = faker.helpers.arrayElement(this.users);
+      const { id: postId, date: postDate } = this.getRandomPost();
+      const { id: userId } = this.getRandomUser();
+      const comment = this.getComment({
+        userId,
+        postId,
+        date: postDate,
+      });
+      const innerComments = this.generateInnerComments({
+        postId,
+        commentDate: comment.date
+      });
+      const innerCommentsIds = innerComments.map(({ id }) => id);
 
+      comment.setInnerCommentsIds(innerCommentsIds);
+
+      return [comment, ...innerComments];
+    });
+
+    return comments.flat();
+  }
+
+  getRandomPost() {
+    return faker.helpers.arrayElement(this.posts);
+  }
+
+  getRandomUser() {
+    return faker.helpers.arrayElement(this.users);
+  }
+
+  getRandomAmountInnerComments() {
+    return faker.datatype.number(MAX_COMMENTS_BY_COMMENT);
+  }
+
+  /**
+   * @param {Object} params
+   * @param {import('../post/Post').Post['id']} params.postId 
+   * @param {import('./Comment').Comment['date']} params.commentDate 
+   * @return {import('./Comment').Comment[]}
+   */
+  generateInnerComments({ postId, commentDate }) {
+    const amount = this.getRandomAmountInnerComments();
+    const comments = this.getFakeEntities(amount).map(() => {
+      const { id: userId } = this.getRandomUser();
 
       return this.getComment({
-        postId,
         userId,
-        postDate,
-      });
+        postId,
+        date: commentDate,
+      })
     });
 
     return comments;
   }
 
   /**
-   * 
    * @param {import('./Comment').Constructor} params 
-   * @returns {import('./Comment')}
+   * @returns {import('./Comment').Comment}
    */
   getComment(params) {
     return new Comment(params);

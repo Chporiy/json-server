@@ -1,3 +1,4 @@
+const { v4: uuidv4 } = require("uuid");
 const { Comment } = require("./Comment");
 
 const testDate = new Date("2022-01-01");
@@ -8,11 +9,11 @@ describe('Comment', () => {
   const week = 86400000 * 7;
   const postId = 0;
   const userId = 0;
-  const postDate = new Date(testDate.getTime() - week);
+  const date = new Date(testDate.getTime() - week);
   const params = {
     postId,
     userId,
-    postDate,
+    date,
   }
 
   it('should create an instance', () => {
@@ -27,11 +28,20 @@ describe('Comment', () => {
     });
   });
 
-  it('should set a date between post date and current time', () => {
+  it('should set a date between passed date and current time', () => {
     const comment = new Comment(params);
     const commentDateAsTimestamp = comment.date.getTime();
 
-    expect(commentDateAsTimestamp).toBeGreaterThanOrEqual(postDate.getTime());
+    expect(commentDateAsTimestamp).toBeGreaterThanOrEqual(date.getTime());
     expect(commentDateAsTimestamp).toBeLessThanOrEqual(testDate.getTime());
+  });
+
+  it('should set inner comment ids', () => {
+    const comment = new Comment(params);
+    const innerCommentsIds = [uuidv4(), uuidv4()];
+
+    comment.setInnerCommentsIds(innerCommentsIds);
+
+    expect(comment.commentIds).toEqual(innerCommentsIds);
   });
 });

@@ -9,6 +9,7 @@ The data generator is [Faker](https://github.com/faker-js/faker)
     POSTS=50 - number of posts
     USERS=10 - number of users
     COMMENTS=100 - number of comments
+    MAX_COMMENTS_BY_COMMENT=2 - maximum comments under an another comment
 
 ## DB structure
 
@@ -32,4 +33,7 @@ The data generator is [Faker](https://github.com/faker-js/faker)
       id: string uniqie;
       postId: string;
       userId: string;
+      commentIds: string[];
+      body: string;
+      date: Date;
     }

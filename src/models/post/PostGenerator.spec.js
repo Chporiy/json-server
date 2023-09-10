@@ -3,7 +3,7 @@ const { PostGenerator } = require("./PostGenerator");
 
 describe('PostGenerator', () => {
   const postsCount = 10;
-  const users = [new User({ id: 0 }), new User({ id: 1 })];
+  const users = [new User(), new User()];
   const params = {
     users,
     postsCount,
