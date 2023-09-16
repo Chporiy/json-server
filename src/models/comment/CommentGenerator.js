@@ -30,15 +30,16 @@ class CommentGenerator extends ContentGenerator {
       const comment = this.getComment({
         userId,
         postId,
+        commentId: "",
         date: postDate,
       });
       const innerComments = this.generateInnerComments({
         postId,
+        commentId: comment.id,
         commentDate: comment.date
       });
-      const innerCommentsIds = innerComments.map(({ id }) => id);
-
-      comment.setInnerCommentsIds(innerCommentsIds);
+      
+      comment.setChildrenCommentsAmount(innerComments.length);
 
       return [comment, ...innerComments];
     });
@@ -60,11 +61,12 @@ class CommentGenerator extends ContentGenerator {
 
   /**
    * @param {Object} params
-   * @param {import('../post/Post').Post['id']} params.postId 
-   * @param {import('./Comment').Comment['date']} params.commentDate 
+   * @param {import('../post/Post').Post['id']} params.postId
+   * @param {import('./Comment').Comment['id']} params.commentId
+   * @param {import('./Comment').Comment['date']} params.commentDate
    * @return {import('./Comment').Comment[]}
    */
-  generateInnerComments({ postId, commentDate }) {
+  generateInnerComments({ postId, commentId, commentDate }) {
     const amount = this.getRandomAmountInnerComments();
     const comments = this.getFakeEntities(amount).map(() => {
       const { id: userId } = this.getRandomUser();
@@ -72,6 +74,7 @@ class CommentGenerator extends ContentGenerator {
       return this.getComment({
         userId,
         postId,
+        commentId,
         date: commentDate,
       })
     });

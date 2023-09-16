@@ -16,19 +16,19 @@ describe("CommentGenerator", () => {
     commentsCount,
   };
 
-  /**
-   * 
+  /**   
    * @param {import('./Comment').Comment[]} comments 
    */
-  const getOriginalAndItsInnerComemnts = (comments) => {
-    const originalComment = comments.find(({ commentIds }) => (
-      commentIds.length > 0)
+  const getPrimaryAndItsInnerComemnts = (comments) => {
+    const primaryComment = comments.find(({ commentId }) => (
+        commentId === ""
+      )
     );
-    const innerComments = comments.filter(({ id }) => (
-      originalComment.commentIds.includes(id))
-    );
+    const innerComments = comments.filter(({ commentId }) => (
+      commentId === primaryComment.id
+    ));
 
-    return { originalComment, innerComments };
+    return { primaryComment, innerComments };
   }
 
 
@@ -43,23 +43,34 @@ describe("CommentGenerator", () => {
     });
   });
 
-  it('should generate inner comments with a publication date greater than an original comment', () => {
+  it('should generate inner comments with a publication date greater than an primary comment', () => {
     const generator = new CommentGenerator(params);
     const comments = generator.generate();
-    const { originalComment, innerComments } = getOriginalAndItsInnerComemnts(comments);
+    const { primaryComment, innerComments } = getPrimaryAndItsInnerComemnts(comments);
 
     innerComments.forEach((comment) => {
-      expect(comment.date.getTime()).toBeGreaterThan(originalComment.date.getTime());
+      expect(comment.date.getTime()).toBeGreaterThan(primaryComment.date.getTime());
     });
   });
 
-  it('should generate inner comments with same the postId property as original comment', () => {
+  it('should generate inner comments with same the postId property as primary comment', () => {
     const generator = new CommentGenerator(params);
     const comments = generator.generate();
-    const { originalComment, innerComments } = getOriginalAndItsInnerComemnts(comments);
+    const { primaryComment, innerComments } = getPrimaryAndItsInnerComemnts(comments);
 
     innerComments.forEach((comment) => {
-      expect(comment.postId).toEqual(originalComment.postId);
+      expect(comment.postId).toEqual(primaryComment.postId);
     });
   });
+
+  it(
+    'should generate a primary comment with childrenCommentAmount property equal to innerComments amount',
+    () => {
+      const generator = new CommentGenerator(params);
+      const comments = generator.generate();
+      const { primaryComment, innerComments } = getPrimaryAndItsInnerComemnts(comments);
+
+      expect(primaryComment.childrenCommentsAmount).toEqual(innerComments.length);
+    }
+  );
 });

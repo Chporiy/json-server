@@ -9,10 +9,12 @@ describe('Comment', () => {
   const week = 86400000 * 7;
   const postId = 0;
   const userId = 0;
+  const commentId = uuidv4();
   const date = new Date(testDate.getTime() - week);
   const params = {
     postId,
     userId,
+    commentId,
     date,
   }
 
@@ -22,9 +24,11 @@ describe('Comment', () => {
     expect(comment).toEqual({
       postId,
       userId,
+      commentId,
       id: expect.any(String),
       body: expect.any(String),
       date: expect.any(Date),
+      childrenCommentsAmount: 0,
     });
   });
 
@@ -36,12 +40,12 @@ describe('Comment', () => {
     expect(commentDateAsTimestamp).toBeLessThanOrEqual(testDate.getTime());
   });
 
-  it('should set inner comment ids', () => {
+  it('should set children comments amount', () => {
     const comment = new Comment(params);
-    const innerCommentsIds = [uuidv4(), uuidv4()];
+    const amount = 1;
 
-    comment.setInnerCommentsIds(innerCommentsIds);
-
-    expect(comment.commentIds).toEqual(innerCommentsIds);
+    comment.setChildrenCommentsAmount(amount);
+    
+    expect(comment.childrenCommentsAmount).toEqual(amount);
   });
 });
