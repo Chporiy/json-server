@@ -19,16 +19,9 @@ class Comment {
     this.postId = postId;
     this.userId = userId;
     this.commentId = commentId;
-    this.childrenCommentsAmount = 0;
+    this.hasChildrenComments = false;
     this.body = faker.lorem.paragraph();
     this.date = faker.date.between(date, new Date());
-  }
-
-  /**
-   * @param {number} amount
-   */
-  setChildrenCommentsAmount(amount) {
-    this.childrenCommentsAmount = amount
   }
 }
 

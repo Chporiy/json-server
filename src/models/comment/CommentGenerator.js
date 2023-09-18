@@ -39,7 +39,7 @@ class CommentGenerator extends ContentGenerator {
         commentDate: comment.date
       });
       
-      comment.setChildrenCommentsAmount(innerComments.length);
+      comment.hasChildrenComments = true;
 
       return [comment, ...innerComments];
     });

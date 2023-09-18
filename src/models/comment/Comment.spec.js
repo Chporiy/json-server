@@ -28,7 +28,7 @@ describe('Comment', () => {
       id: expect.any(String),
       body: expect.any(String),
       date: expect.any(Date),
-      childrenCommentsAmount: 0,
+      hasChildrenComments: false,
     });
   });
 
@@ -38,14 +38,5 @@ describe('Comment', () => {
 
     expect(commentDateAsTimestamp).toBeGreaterThanOrEqual(date.getTime());
     expect(commentDateAsTimestamp).toBeLessThanOrEqual(testDate.getTime());
-  });
-
-  it('should set children comments amount', () => {
-    const comment = new Comment(params);
-    const amount = 1;
-
-    comment.setChildrenCommentsAmount(amount);
-    
-    expect(comment.childrenCommentsAmount).toEqual(amount);
   });
 });

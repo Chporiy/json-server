@@ -64,13 +64,13 @@ describe("CommentGenerator", () => {
   });
 
   it(
-    'should generate a primary comment with childrenCommentAmount property equal to innerComments amount',
+    'should generate a primary comment with hasChildrenComment property equal to true',
     () => {
       const generator = new CommentGenerator(params);
       const comments = generator.generate();
-      const { primaryComment, innerComments } = getPrimaryAndItsInnerComemnts(comments);
+      const { primaryComment } = getPrimaryAndItsInnerComemnts(comments);
 
-      expect(primaryComment.childrenCommentsAmount).toEqual(innerComments.length);
+      expect(primaryComment.hasChildrenComments).toBeTruthy();
     }
   );
 });
